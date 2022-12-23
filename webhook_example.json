@@ -1,0 +1,26 @@
+{
+    "type": "rf:alert",
+    "data": {
+      "data": "{\"amount\":\"4\",\"conversionRate\":{\"fiatCurrency\":\"USD\",\"rate\":0.00005886099270241412},\"cryptoAmount\":\"0.000282528\",\"cryptoCurrency\":\"BTC\",\"currency\":\"USD\",\"offerId\":\"triewtriuewtriew\",\"paymentStatus\":\"202\",\"receivedAmount\":\"0.0004\",\"referenceId\":\"25177c0b-7c27-40a5-80ec-ca7f0aaf0bfc\",\"status\":true,\"transactionId\":\"d98e0caf-fdb9-4fa8-a6a0-4cc01aac7e1b\"}",
+      "conversionRate": {
+        "fiatCurrency": "USD",
+        "rate": 0.00005886099270241412
+      },
+      "amount": "1",
+      "currency": "USD",
+      "referenceId": "25177c0b-7c27-40a5-80ec-ca7f0aaf0bfc",
+      "offerId": "1",
+      "transactionId": "d98e0caf-fdb9-4fa8-a6a0-4cc01aac7e1b",
+      "status": true,
+      "paymentStatus": "1",
+      "cryptoAmount": "0.000282528",
+      "cryptoCurrency": "BTC",
+      "receivedAmount": "0.0004",
+      "isSubscription": false,
+      "subscription": {},
+      "customerInfo": {
+        "email": "manish25.manish2488@gmail.com"
+      }
+    },
+    "signature": "eo4t8nvlbe+q1glqKfhqvazj58vHfFkgiSvP1rbA1V2nkp1qDl/gNXq7K1BRjT38twK52eZ7Yv8IfFKtwsK4YgYmga9PwsiaFrzQNTmrmPRLX4234nadPAsWQCGQHBtTSFWPnx0BxEIuxd1BWu2MDV/mwsiHdTxqmpL5KhsJ/rGV2v1ho4l6W+jbotYdpcFuXlw1gTR8V2n3R8clnnH9iPKfOuWKMG9hpxLc1sHOr7IALAWGruBRsEBme6kkPOk8oNdeVMKhc0Jm6Y+K6YOBXh9V/b+AKrOE7B4rlkTlJwc0Pf3TUcUs+hhJ47Dafd2zEpGm4YyufEKGUzIjXbfAzg=="
+  }

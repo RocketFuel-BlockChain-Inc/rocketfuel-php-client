@@ -1,68 +1,78 @@
 <?php
-
-$curl = curl_init();
-
-$cred = array('email'=>'EMAIL', 'password'=>'PASSWORD');
+$cred = array('email' => 'EMAIL', 'password' => 'PASSWORD');
 $merchantId = 'MERCHANT_ID';
-curl_setopt_array($curl, array(
+function login($cred)
+{
+    $curl = curl_init();
 
-  CURLOPT_URL => 'https://app.rocketfuelblockchain.com/api/auth/login',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS =>json_encode($cred),
-  CURLOPT_HTTPHEADER => array(
-    'Content-Type: application/json'
-  ),
-));
 
-$response = curl_exec($curl);
+    curl_setopt_array($curl, array(
 
-curl_close($curl);
-$response = json_decode($response);
- 
-$curl = curl_init();
-$payload = array(
-    "amount"=> "100",
-    "cart" => array(
+        CURLOPT_URL => 'https://app.rocketfuelblockchain.com/api/auth/login',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode($cred),
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+        ),
+    ));
+
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return $response;
+}
+function generateUUID($merchantId, $access)
+{
+    $curl = curl_init();
+    $payload = array(
+        "amount" => "100",
+        "cart" => array(
             array(
-                "name"=>"Test",
-                "id"=>"200",
-                "price"=>100,
-                "quantity"=>"1"
+                "name" => "Test",
+                "id" => "200",
+                "price" => 100,
+                "quantity" => "1"
             )
         ),
-    "merchant_id" =>$merchantId,
-    "currency" => "USD",
-    "order" => "20",
-    "redirectUrl" => ""
-);
-curl_setopt_array($curl, array(
- 
-  CURLOPT_URL => 'https://app.rocketfuelblockchain.com/api/hosted-page',
-  CURLOPT_RETURNTRANSFER => true,
-  CURLOPT_ENCODING => '',
-  CURLOPT_MAXREDIRS => 10,
-  CURLOPT_TIMEOUT => 0,
-  CURLOPT_FOLLOWLOCATION => true,
-  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-  CURLOPT_CUSTOMREQUEST => 'POST',
-  CURLOPT_POSTFIELDS => json_encode($payload),
-  CURLOPT_HTTPHEADER => array(
-    'Authorization: Bearer '.$response->result->access,
-    'Content-Type: application/json'
-  ),
-));
+        "merchant_id" => $merchantId,
+        "currency" => "USD",
+        "order" => "20",
+        "redirectUrl" => ""
+    );
+    curl_setopt_array($curl, array(
 
-$response = curl_exec($curl);
+        CURLOPT_URL => 'https://app.rocketfuelblockchain.com/api/hosted-page',
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'POST',
+        CURLOPT_POSTFIELDS => json_encode($payload),
+        CURLOPT_HTTPHEADER => array(
+            'Authorization: Bearer ' . $access,
+            'Content-Type: application/json'
+        ),
+    ));
 
-curl_close($curl);
+    $response = curl_exec($curl);
+
+    curl_close($curl);
+    return  $response;
+} //*
+$response = login($cred);
+$response = json_decode($response);
+
+$response = generateUUID($merchantId, $response->result->access);
+
 echo $response;
-
 //sample response
 //{"ok":true,"result":{"url":"https://qa-payment.rocketdemo.net/hostedPage/083f3af4-8d06-4b8e-99a8-2694a407a10e","uuid":"083f3af4-8d06-4b8e-99a8-2694a407a10e","returnListingFormat":{"invoiceId":"083f3af4-8d06-4b8e-99a8-2694a407a10e","customerName":null,"createdAt":"2022-12-22T20:03:56.325Z","invoiceAmount":"100","currency":"USD","symbol":"USD","email":null,"status":111,"details":{"customerDetails":null,"invoiceDetails":{"invoiceId":"20","totalAmount":"100","itemCarts":[{"name":"Test","id":"200","price":100,"quantity":1}],"currency":"USD"},"paymentLink":"https://qa-payment.rocketdemo.net/hostedPage/083f3af4-8d06-4b8e-99a8-2694a407a10e"}}}}
 
@@ -89,12 +99,12 @@ echo $response;
 // });
 
 //function callBackFunc(result){
-    /**
-     *  if(result.status !== 0 ){
-     *  //update order status
-     * }
-     * 
-     */
+/**
+ *  if(result.status !== 0 ){
+ *  //update order status
+ * }
+ * 
+ */
 // }
 // STEP 2
 //  rkfl.initPayment();
