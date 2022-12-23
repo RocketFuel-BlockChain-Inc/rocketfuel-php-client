@@ -6,7 +6,7 @@ function main()
     /**
      * $_REQUEST wont work because the webhook is application/json format and not formdata format
      */
-    // $payload = file_get_contents('php://'); //use for receiving payload frmo RKFL SERVER
+    // $payload = file_get_contents('php://input'); //use for receiving payload from RKFL SERVER
 
     $payload = file_get_contents('./webhook_example.json'); //use for test
     $payload = json_decode($payload);
