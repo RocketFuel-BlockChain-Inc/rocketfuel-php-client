@@ -5,9 +5,9 @@ Where possible, the services available on the client groups the API into logical
  
 ================================
 
- INSTRUCTION```
- BACKEND
- 1. Server side -> Generate the uuid on the server side
+==INSTRUCTION==
+
+Generate the uuid on the server side
  
  ```
     require_once(PATH_TO_RKFL.'../src/RKFL_CLIENT.php');
@@ -42,8 +42,8 @@ Where possible, the services available on the client groups the API into logical
  
  
 
-WEBHOOK SYSTEM
-https:docs.rocketfuelblockchain.com/webhooks
+==WEBHOOK SYSTEM==
+For more information, follow https:docs.rocketfuelblockchain.com/webhooks
 
 ```
    require_once(PATH_TO_RKFL.'../src/WEBHOOK_CLASS.php');
