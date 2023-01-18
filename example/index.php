@@ -5,8 +5,8 @@ require_once(dirname(__DIR__).'/src/RKFL_CLIENT.php');
 $options = array(
     'environment'=>'sandbox', //sandbox,prod,
     'merchantId'=>'9514ec97-8672-4668-bf43-8722c9fe89c2',
-    'password'=>'9G69ljwzFhR@Zbpjyf5GWd3',
-    'email'=>'rkfl-integration@rocketfuelblockchain.com',
+    'secret'=>'fdb652e4-ee6e-478d-b332-53f9c045663b',
+    'clientId'=>'45f880085d700cab1b16a506357b6bc4459b49864933ce6a91a47f2863f630c7'
 );
 
 $rkfl = new \RKFL\Client\RKFL_CLIENT($options);
@@ -23,7 +23,7 @@ $payload = array(
     ),
     "merchant_id" => $options['merchantId'],
     "currency" => "USD",
-    "order" => "20",
+    "order" =>  (string)time(),
     "redirectUrl" => ""
 );
 

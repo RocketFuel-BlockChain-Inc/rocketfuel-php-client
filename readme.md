@@ -6,6 +6,12 @@ Where possible, the services available on the client groups the API into logical
 ================================
 
 ==INSTRUCTION==
+===Test===
+To test run this in command line
+```
+php example/index.php
+```
+
 
 Generate the uuid on the server side
  
@@ -15,8 +21,8 @@ Generate the uuid on the server side
     $options = array(
         'environment'=>'sandbox', //sandbox -- prod,
         'merchantId'=>'MERCHANT_ID',
-        'password'=>'PASSWORD',
-        'email'=>'EMAIL',
+        'secret'=>'CLIENTSECRET',
+        'clientId'=>'CLIENTID',
     );
 
     $rkfl = new \RKFL\Client\RKFL_CLIENT($options);
